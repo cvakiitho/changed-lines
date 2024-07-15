@@ -22,7 +22,7 @@ def fetch_patch():
         'Authorization':f'Bearer {TOKEN}'
         }
     git_request = git_session.get(
-        f'https://api.github.com/repos/{repo}/pulls/{pr}/files',
+        f'https://{api_url}/repos/{repo}/pulls/{pr}/files',
         headers=headers
         )
     return git_request.json()
@@ -79,7 +79,8 @@ def get_lines(line_dict):
     return final_dict
 
 if __name__ == "__main__":
-    
+
+    api_url = os.getenv('API_URL')
     TOKEN = os.getenv('INPUT_TOKEN')
     branch_name = os.getenv('INPUT_BRANCH')
     repo = os.getenv('INPUT_REPO')
