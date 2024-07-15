@@ -11,7 +11,10 @@ class MissingToken(Exception):
     '''Raised when the GitHub token is missing'''
     
 class MissingPatchData(Exception):
-    '''Raised when the patch data is missing'''    
+    '''Raised when the patch data is missing'''
+
+class MissingApiUrl(Exception):
+    '''Raised when the GitHub api url is missing'''
 
 def fetch_patch():
     '''Grabs the patch data from the GitHub API.'''
@@ -91,6 +94,9 @@ if __name__ == "__main__":
 
     if not TOKEN:
         raise MissingToken('Missing GitHub token')
+
+    if not api_url:
+        raise MissingApiUrl('Missing Github api url')
 
     data = fetch_patch()
     added_line_data = parse_patch_data(data)
